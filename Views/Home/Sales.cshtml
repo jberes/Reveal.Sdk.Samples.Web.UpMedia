@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Sales";
+}
+@section Scripts
+    {
+    <script type="text/javascript">
+        function runSample() {
+            var dashboardId = "Sales";
+
+
+            customLoadDashboard(dashboardId, function (dashboard) {
+                var startDate = 'March 01, 2020 00:0:00';
+                var endDate = 'March 01, 2022 00:0:00';
+                $('#upmedia-loading').hide('slow', function () { $target.remove(); });
+
+                dashboard.dateFilter = new $.ig.RVDateDashboardFilter($.ig.RVDateFilterType.CustomRange, new $.ig.RVDateRange(new Date(startDate), new Date(endDate)));
+
+                var revealView = window.revealView = new $.ig.RevealView("#revealView");
+                revealView.interactiveFilteringEnabled = true;
+                //The handlers, used bellow, are defined in wwwroot\js\site.js
+                revealView.onSave = onSaveHandler;
+                revealView.onLinkedDashboardProviderAsync = onLinkedDashboardProviderAsyncHandler;
+                revealView.onDashboardSelectorRequested = onDashboardSelectorRequestedHandler;
+
+                revealView.showFilters = false;
+                revealView.dashboard = dashboard;
+            });
+        }
+    </script>
+}
+
+<script>
+    $(function () {
+        var startDate = 'March 01, 2020 00:0:00';
+        var endDate = 'March 1, 2022 00:0:00';
+        $("#slider-range").slider({
+            range: true,
+            min: new Date(startDate).getTime() / 1000,
+            max: new Date(endDate).getTime() / 1000,
+            step: 86400,
+            values: [new Date(startDate).getTime() / 1000, new Date(endDate).getTime() / 1000],
+            slide: function (event, ui) {
+                $("#fromDate").text(new Date(ui.values[0] * 1000).toDateString());
+                $("#toDate").text(new Date(ui.values[1] * 1000).toDateString());
+
+            },
+            change: function (event, ui) {
+                revealView.dashboard.dateFilter = new $.ig.RVDateDashboardFilter($.ig.RVDateFilterType.CustomRange, new $.ig.RVDateRange(new Date(ui.values[0] * 1000), new Date(ui.values[1] * 1000)));
+            }
+        });
+        $("#fromDate").text(new Date(startDate).toDateString());
+        $("#toDate").text(new Date(endDate).toDateString());
+    });
+
+    var activeTeritorries = ["Americas", "APAC", "EMEA", "India", "Japan"];
+    var initialactiveTeritorries = activeTeritorries.slice();
+
+    function updateTerritoriesFilter() {
+        window.revealView.dashboard.filters.getByTitle("Territory").selectedValues = activeTeritorries;
+    }
+
+    function checkAllTerritories() {
+        document.getElementById("americasCheckbox").checked = true;
+        document.getElementById("apacCheckbox").checked = true;
+        document.getElementById("emeaCheckbox").checked = true;
+        document.getElementById("indiaCheckbox").checked = true;
+        document.getElementById("japanCheckbox").checked = true;
+    }
+
+    function flipTerritories(territory) {
+        if (activeTeritorries.indexOf(territory) > -1) {
+            activeTeritorries.splice(activeTeritorries.indexOf(territory), 1);
+        }
+        else {
+            activeTeritorries.push(territory);
+        }
+        if (activeTeritorries.length == 0) {
+            activeTeritorries = initialactiveTeritorries.slice();
+            checkAllTerritories();
+        }
+
+        updateTerritoriesFilter();
+    }
+</script>
+
+<div class="controls">
+    <div class="container">
+        <div id="fromDate" style="width:150px;"></div>
+        <div id="slider-range" style="width:300px"></div>
+        <div id="toDate" style="width:150px;"></div>
+    </div>
+
+    <label class="container">
+        Americas
+        <input type="checkbox" onchange="flipTerritories('Americas')" id="americasCheckbox" checked>
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        APAC
+        <input type="checkbox" onchange="flipTerritories('APAC')" id="apacCheckbox" checked>
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        EMEA
+        <input type="checkbox" onchange="flipTerritories('EMEA')" id="emeaCheckbox" checked>
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        India
+        <input type="checkbox" onchange="flipTerritories('India')" id="indiaCheckbox" checked>
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Japan
+        <input type="checkbox" onchange="flipTerritories('Japan')" id="japanCheckbox" checked>
+        <span class="checkmark"></span>
+    </label>
+</div>

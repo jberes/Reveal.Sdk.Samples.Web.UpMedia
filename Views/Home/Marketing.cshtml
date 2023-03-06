@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Marketing";
+}
+@section Scripts
+    {
+    <script type="text/javascript">
+        function runSample() {
+            var dashboardId = "Marketing";
+
+
+            customLoadDashboard(dashboardId, function (dashboard) {
+
+                var revealView = window.revealView = new $.ig.RevealView("#revealView");
+                revealView.onSave = onSaveHandler;
+                 revealView.interactiveFilteringEnabled = true;
+                //The handlers, used bellow, are defined in wwwroot\js\site.js
+                revealView.onSave = onSaveHandler;
+                revealView.onLinkedDashboardProviderAsync = onLinkedDashboardProviderAsyncHandler;
+                revealView.onDashboardSelectorRequested = onDashboardSelectorRequestedHandler;
+
+                revealView.dashboard = dashboard;
+            });
+        }
+    </script>
+}

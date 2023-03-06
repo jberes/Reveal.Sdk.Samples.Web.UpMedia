@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Reveal.Sdk.Samples.Web.UpMedia</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://maps.googleapis.com" />
+    <link rel="preconnect" href="https://code.jquery.com" />
+
+    @RenderSection("Styles", required: false)
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="~/lib/dayjs/dayjs.min.js" asp-append-version="true"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@*     
+    <environment names="Development,Staging,Production">
+        <script src="~/Reveal/infragistics.reveal.js" asp-append-version="true"></script>
+    </environment>*@
+
+       <script src="https://dl.revealbi.io/reveal/libs/1.4.0/infragistics.reveal.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        $.ig.RevealSdkSettings.setBaseUrl('@Href("~/")');
+        $.ig.RevealSdkSettings.enableNewCharts = "true";
+        //$.ig.RevealSdkSettings.interactiveFilteringEnabled = "true";
+        $.ig.RevealSdkSettings.visualizations.maps.shapeFilesUrl = window.location.origin + "/MapServerFiles/";
+
+
+        function customLoadDashboard(dashboardId, dashboardLoadedFunc) {
+            $.ig.RVDashboard.loadDashboard(dashboardId, function (dashboard) {
+                $('#upmedia-loading').hide('slow', function () { $('#upmedia-loading').remove(); });
+                dashboardLoadedFunc(dashboard);
+            }, function (error) { console.log(error); });
+        }
+
+
+
+    </script>
+
+   
+
+
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="#" id="logo"><img src="~/images/UpMedia-logo.svg" alt="UpMedia Logo" /></a>
+                <a href="@Href("~/home/Sales")">Sales</a>
+                <a href="@Href("~/home/Marketing")">Marketing</a>
+                <a href="@Href("~/home/Campaigns")">Campaigns</a>
+                <a href="@Href("~/home/Manufacturing")">Manufacturing</a>
+                <a href="@Href("~/home/CreateDashboard")">Create Dashboard</a>
+
+            </div>
+            <div class="nav-right">
+                <a href="#" id="settings"><img src="~/images/gear-icon.svg" alt="Settings Icon" /></a>
+                <a href="#" id="settings"><img src="~/images/person-icon.svg" alt="User Icon" /></a>
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+    <section>
+        <div id="revealView">
+            <div id="upmedia-loading"><span>Opening Dashboard...</span></div>
+        </div>
+
+        <div id="selectDashboardDialog" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <label>Pick a target dashboard:</label>
+                <div id="dashboardSelectionOptions"></div>
+            </div>
+        </div>
+    </section>
+    @RenderSection("Bottom", required: false)
+
+    @RenderSection("Scripts", required: false)
+    <script src="~/js/site.js"></script>
+    <script type="text/javascript">
+        $.ig.RevealSdkSettings.ensureFontsLoadedAsync()
+        .then(() => runSample())
+        .catch(() => runSample());
+    </script>
+</body>
+</html>

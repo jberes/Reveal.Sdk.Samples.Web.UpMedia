@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "CreateDashboard";
+}
+@section Scripts
+    {
+    <script type="text/javascript">
+        function runSample() { 
+            $('#upmedia-loading').remove();
+            
+            var revealView = new $.ig.RevealView("#revealView");
+            revealView.startInEditMode = true;
+            revealView.dashboard = new $.ig.RVDashboard();
+
+            //The handlers, used bellow, are defined in wwwroot\js\site.js
+            revealView.onSave = onSaveHandler;
+            revealView.onLinkedDashboardProviderAsync = onLinkedDashboardProviderAsyncHandler;
+            revealView.onDashboardSelectorRequested = onDashboardSelectorRequestedHandler;
+
+            revealView.onDataSourcesRequested = function (callback) {
+                
+                var samplesDatasource = new $.ig.RVLocalFileDataSourceItem();
+                samplesDatasource.uri = "local:/Samples.xlsx";
+               
+                var excelDsi = new $.ig.RVExcelDataSourceItem(samplesDatasource);
+                excelDsi.title = "Sample Data";
+
+                var sqlDataSource = new $.ig.RVSqlServerDataSource();
+                sqlDataSource.id="1234";
+                sqlDataSource.host = "jberes.database.windows.net";
+                sqlDataSource.database = "NorthwindCloud";
+                sqlDataSource.title = "My SQL Server";
+                sqlDataSource.port="1433";
+
+                var sqlDataSourceItem1 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
+                sqlDataSourceItem1.id = "CustomerDemographics";
+                sqlDataSourceItem1.table = "CustomerDemographics";
+                sqlDataSourceItem1.title = "Customer Demographics";
+                sqlDataSourceItem1.subtitle = "";
+
+                var sqlDataSourceItem2 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
+                sqlDataSourceItem2.id = "Category1997";
+                sqlDataSourceItem2.table = "Orders by Category";
+                sqlDataSourceItem2.title = "1997 Category Data";
+                sqlDataSourceItem2.subtitle = "";
+
+                var sqlDataSourceItem3 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
+                sqlDataSourceItem3.id = "Customers";
+                sqlDataSourceItem3.table = "Customers";
+                sqlDataSourceItem3.title = "Customers List";
+                sqlDataSourceItem3.subtitle = "";
+
+                var sqlDataSourceItem4 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
+                sqlDataSourceItem4.id = "OrdersQry";
+                sqlDataSourceItem4.table = "Customer Orders Query";
+                sqlDataSourceItem4.title = "Orders (Full List)";
+                sqlDataSourceItem4.subtitle = "";
+
+                var athenaDS = new $.ig.RVAthenaDataSource();
+                athenaDS.id = "athenaDSId";
+                athenaDS.title = "AWS Athena Data";
+                athenaDS.subtitle = "Full Database";
+                athenaDS.region = "us-east-1";
+                athenaDS.database = "mydatabase";
+
+                var postgresDataSource = new $.ig.RVPostgresDataSource();
+                postgresDataSource.id="pgDs";
+                postgresDataSource.host = "localhost";
+                postgresDataSource.database = "Northwind Postgres";
+                postgresDataSource.title = "Northwind Postgres Data";
+                postgresDataSource.port="5432";
+
+                callback(new $.ig.RevealDataSources([postgresDataSource, athenaDS, sqlDataSource], 
+                    [excelDsi, sqlDataSourceItem1, sqlDataSourceItem2, sqlDataSourceItem3, sqlDataSourceItem4], false));
+            };
+        }
+    </script>
+}

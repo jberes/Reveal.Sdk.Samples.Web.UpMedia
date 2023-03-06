@@ -1,0 +1,7 @@
+{
+    "name": "upmedia",
+    "version": "1.0.0",
+    "description": "upmedia sample - json merger",
+    "main": "upmedia.js",
+    "dependencies": {}
+}
