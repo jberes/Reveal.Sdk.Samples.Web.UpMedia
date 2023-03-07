@@ -24,11 +24,11 @@
                 var excelDsi = new $.ig.RVExcelDataSourceItem(samplesDatasource);
                 excelDsi.title = "Sample Data";
 
-                var sqlDataSource = new $.ig.RVSqlServerDataSource();
-                sqlDataSource.id="1234";
+                var sqlDataSource = new $.ig.RVAzureSqlDataSource();
+                //sqlDataSource.id="1234";
                 sqlDataSource.host = "jberes.database.windows.net";
                 sqlDataSource.database = "NorthwindCloud";
-                sqlDataSource.title = "My SQL Server";
+                sqlDataSource.title = "Azure SQL";
                 sqlDataSource.port="1433";
 
                 var sqlDataSourceItem1 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
@@ -62,6 +62,16 @@
                 athenaDS.region = "us-east-1";
                 athenaDS.database = "mydatabase";
 
+
+                var redshiftDS = new $.ig.RVRedshiftDataSource
+                redshiftDS.id = "redshiftDsId";
+                redshiftDS.title = "Redshift Data";
+                redshiftDS.subtitle = "Full Database";
+                redshiftDS.host = "reveal-redshift.cmeyu4xjvffl.us-east-1.redshift.amazonaws.com";
+                //redshiftDS.database = "mydatabase";
+
+
+
                 var postgresDataSource = new $.ig.RVPostgresDataSource();
                 postgresDataSource.id="pgDs";
                 postgresDataSource.host = "localhost";
@@ -69,7 +79,7 @@
                 postgresDataSource.title = "Northwind Postgres Data";
                 postgresDataSource.port="5432";
 
-                callback(new $.ig.RevealDataSources([postgresDataSource, athenaDS, sqlDataSource], 
+                callback(new $.ig.RevealDataSources([redshiftDS, postgresDataSource, athenaDS, sqlDataSource],
                     [excelDsi, sqlDataSourceItem1, sqlDataSourceItem2, sqlDataSourceItem3, sqlDataSourceItem4], false));
             };
         }

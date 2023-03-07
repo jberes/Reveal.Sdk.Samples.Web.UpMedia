@@ -16,8 +16,12 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.Services
                 if (dataSource is RVAzureSqlDataSource) userCredential =
                   new RVUsernamePasswordDataSourceCredential("jasonberes", "=RevealJasonSdk09");
 
-                if (dataSource is RVSqlServerDataSource) userCredential =
+                else if (dataSource is RVSqlServerDataSource) userCredential =
                         new RVUsernamePasswordDataSourceCredential("jasonberes", "=RevealJasonSdk09");
+
+                else if (dataSource is RVRedshiftDataSource) userCredential =
+                        new RVUsernamePasswordDataSourceCredential("revealadmin", "5Bumblebees(musics");
+
 
                 else if (dataSource is RVPostgresDataSource) userCredential =
                     new RVUsernamePasswordDataSourceCredential("postgres", "superuser");

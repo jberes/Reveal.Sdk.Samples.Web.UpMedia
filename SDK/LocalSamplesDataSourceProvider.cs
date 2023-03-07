@@ -96,6 +96,14 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.SDK
                 pgDs.Database = "Northwind";
             }
 
+            else if (dataSource is RVRedshiftDataSource redshiftDs)
+            {
+                redshiftDs.Host = "reveal-redshift.cmeyu4xjvffl.us-east-1.redshift.amazonaws.com";
+                redshiftDs.Database = "reveal";
+            }
+
+
+
             // Snowflake
             else if (dataSource is RVSnowflakeDataSource snwDs)
             {
