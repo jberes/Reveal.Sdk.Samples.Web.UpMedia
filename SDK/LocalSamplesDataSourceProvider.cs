@@ -20,13 +20,7 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.SDK
             }
 
             if (dataSourceItem is RVSqlServerDataSourceItem sqlDsi)
-
-
-
             {
-
-           
-                
                 var sqlServerDS = (RVSqlServerDataSource)sqlDsi.DataSource;
                 sqlServerDS.Host = "jberes.database.windows.net";
                 sqlServerDS.Database = "NorthwindCloud";
