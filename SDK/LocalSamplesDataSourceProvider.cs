@@ -20,9 +20,20 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.SDK
             }
 
             if (dataSourceItem is RVSqlServerDataSourceItem sqlDsi)
+
+
+
             {
+
+           
+                
+                var sqlServerDS = (RVSqlServerDataSource)sqlDsi.DataSource;
+                sqlServerDS.Host = "jberes.database.windows.net";
+                sqlServerDS.Database = "NorthwindCloud";
+
                 if (sqlDsi.Id == "OrdersQry")
                 {
+
                     sqlDsi.CustomQuery = "Select * from Orders Qry";
                 }
 
@@ -41,7 +52,7 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.SDK
                     sqlDsi.CustomQuery = "Select * from Customers";
                 }
             }
-            return Task.FromResult((RVDataSourceItem)dataSourceItem);
+            return Task.FromResult(dataSourceItem);
         }
 
 
