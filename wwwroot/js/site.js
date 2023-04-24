@@ -58,7 +58,6 @@ var onLinkedDashboardProviderAsyncHandler = (dashboardId => {
     return $.ig.RVDashboard.loadDashboardAsync(dashboardId);
 })
 
-
 var onDashboardSelectorRequestedHandler = (args) => {
     showTargetDashboardPicker(args.callback);
 }

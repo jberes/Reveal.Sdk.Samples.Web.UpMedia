@@ -14,38 +14,51 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.SDK
                 return Task.FromResult(CreateLocalSamplesDataSourceItem((RVExcelDataSourceItem)dataSourceItem));
             }
 
-            if (dataSourceItem is RVAthenaDataSourceItem athenaDsi)
-            {
-                athenaDsi.Table = "northwindinvoicesparquet";
-            }
 
-            if (dataSourceItem is RVSqlServerDataSourceItem sqlDsi)
-            {
-                var sqlServerDS = (RVSqlServerDataSource)sqlDsi.DataSource;
-                sqlServerDS.Host = "jberes.database.windows.net";
-                sqlServerDS.Database = "NorthwindCloud";
+            //if (dataSourceItem is RVRedshiftDataSourceItem redshiftDsi)
+            //{
+            //    redshiftDsi.Table = "northwindinvoicesparquet";
+            //    redshiftDsi.CustomQuery = "Select from northwindinvoices where customerid = 'BLONP'";
+            //}
 
-                if (sqlDsi.Id == "OrdersQry")
-                {
 
-                    sqlDsi.CustomQuery = "Select * from Orders Qry";
-                }
 
-                else if (sqlDsi.Id == "Category1997")
-                {
-                    sqlDsi.CustomQuery = "Select * from 'Category Sales for 1997'";
-                }
+            
 
-                else if (sqlDsi.Id == "Customers")
-                {
-                    sqlDsi.CustomQuery = "Select * from Customers";
-                }
+            //if (dataSourceItem is RVAthenaDataSourceItem athenaDsi)
+            //{
+            //    athenaDsi.Table = "northwindinvoicesparquet";
+            //}
 
-                else if (sqlDsi.Id == "CustomerDemographics")
-                {
-                    sqlDsi.CustomQuery = "Select * from Customers";
-                }
-            }
+            //if (dataSourceItem is RVAzureSqlDataSourceItem sqlDsi)
+            //{
+            //    //var sqlServerDS = (RVSqlServerDataSource)sqlDsi.DataSource;
+            //    //sqlServerDS.Host = "jberes.database.windows.net";
+            //    ////sqlServerDS.Database = "NorthwindCloud";
+
+            //    //if (sqlDsi.Id == "OrdersQry")
+            //    //{
+
+            //    //    sqlDsi.CustomQuery = "Select * from Orders Qry";
+            //    //}
+
+            //    //else if (sqlDsi.Id == "Category1997")
+            //    //{
+            //    //    sqlDsi.CustomQuery = "Select * from 'Category Sales for 1997'";
+            //    //}
+
+            //    //else if (sqlDsi.Id == "Customers")
+            //    //{
+            //    //    sqlDsi.CustomQuery = "Select * from Customers";
+            //    //}
+
+            //    //else if (sqlDsi.Id == "CustomerDemographics")
+            //    //{
+            //        //sqlServerDS.Host = "autosdbserver.database.windows.net";
+            //        //sqlServerDS.Database = "AutoPeople";
+            //        sqlDsi.CustomQuery = "Select * from Autos";
+            //    //}
+            //}
             return Task.FromResult(dataSourceItem);
         }
 
@@ -131,15 +144,25 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.SDK
 
             else if (dataSource is RVSqlServerDataSource sqlDs)
             {
-                sqlDs.Host = "jberes.database.windows.net";
-                sqlDs.Database = "NorthwindCloud";
+
+                sqlDs.Host = "autosdbserver.database.windows.net";
+                sqlDs.Database = "AutoPeople";
+                
+
+                //sqlDs.Host = "jberes.database.windows.net";
+                //sqlDs.Database = "NorthwindCloud";
                 sqlDs.Port = 1433;
             }
 
             else if (dataSource is RVAzureSqlDataSource sqlADs)
             {
-                sqlADs.Host = "jberes.database.windows.net";
-                sqlADs.Database = "NorthwindCloud";
+
+                sqlADs.Host = "autosdbserver.database.windows.net";
+                sqlADs.Database = "AutoPeople";
+
+
+                //sqlADs.Host = "jberes.database.windows.net";
+                //sqlADs.Database = "NorthwindCloud";
                 sqlADs.Port = 1433;
             }
             return Task.FromResult(dataSource);

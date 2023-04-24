@@ -13,11 +13,21 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.Services
                     new RVUsernamePasswordDataSourceCredential();
 
 
-                if (dataSource is RVAzureSqlDataSource) userCredential =
-                  new RVUsernamePasswordDataSourceCredential("jasonberes", "=RevealJasonSdk09");
+                //if (dataSource is RVAzureSqlDataSource) userCredential =
+                //  new RVUsernamePasswordDataSourceCredential("jasonberes", "=RevealJasonSdk09");
 
-                else if (dataSource is RVSqlServerDataSource) userCredential =
-                        new RVUsernamePasswordDataSourceCredential("jasonberes", "=RevealJasonSdk09");
+                //if (dataSource is RVSqlServerDataSource) userCredential =
+                //        new RVUsernamePasswordDataSourceCredential("dev", "AutosEfDemoWebinar2023!@jasonberes#()ENDER");
+
+
+                if (dataSource is RVAzureSqlDataSource) userCredential =
+                        new RVUsernamePasswordDataSourceCredential("dev", "AutosEfDemoWebinar2023!@jasonberes#()ENDER");
+
+
+
+                //else if (dataSource is RVSqlServerDataSource) userCredential =
+                //     new RVUsernamePasswordDataSourceCredential("jasonberes", "=RevealJasonSdk09");
+
 
                 else if (dataSource is RVRedshiftDataSource) userCredential =
                         new RVUsernamePasswordDataSourceCredential("revealadmin", "5Bumblebees(musics");

@@ -18,49 +18,54 @@
 
             revealView.onDataSourcesRequested = function (callback) {
                 
-                var samplesDatasource = new $.ig.RVLocalFileDataSourceItem();
-                samplesDatasource.uri = "local:/Samples.xlsx";
+                //var samplesDatasource = new $.ig.RVLocalFileDataSourceItem();
+                //samplesDatasource.uri = "local:/Samples.xlsx";
                
-                var excelDsi = new $.ig.RVExcelDataSourceItem(samplesDatasource);
-                excelDsi.title = "Sample Data";
+                //var excelDsi = new $.ig.RVExcelDataSourceItem(samplesDatasource);
+                //excelDsi.title = "Sample Data";
 
-                var sqlDataSource = new $.ig.RVAzureSqlDataSource();
+                //var sqlDataSource = new $.ig.RVAzureSqlDataSource();
                 //sqlDataSource.id="1234";
-                sqlDataSource.host = "jberes.database.windows.net";
-                sqlDataSource.database = "JB-NorthwindCloud";
-                sqlDataSource.title = "Azure SQL";
-                sqlDataSource.port="1433";
+                //sqlDataSource.title = "SQL SQL";
 
-                var sqlDataSourceItem1 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
-                sqlDataSourceItem1.id = "CustomerDemographics";
-                sqlDataSourceItem1.table = "CustomerDemographics";
-                sqlDataSourceItem1.title = "Customer Demographics";
-                sqlDataSourceItem1.subtitle = "";
+                //sqlDataSource.host = "autosdbserver.database.windows.net";
+                //sqlDataSource.database = "Autos";
 
-                var sqlDataSourceItem2 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
-                sqlDataSourceItem2.id = "Category1997";
-                sqlDataSourceItem2.table = "Orders by Category";
-                sqlDataSourceItem2.title = "1997 Category Data";
-                sqlDataSourceItem2.subtitle = "";
 
-                var sqlDataSourceItem3 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
-                sqlDataSourceItem3.id = "Customers";
-                sqlDataSourceItem3.table = "Customers";
-                sqlDataSourceItem3.title = "Customers List";
-                sqlDataSourceItem3.subtitle = "";
+               //sqlDataSource.host = "jberes.database.windows.net";
+               // sqlDataSource.database = "NorthwindCloud";
+                //sqlDataSource.port="1433";
 
-                var sqlDataSourceItem4 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
-                sqlDataSourceItem4.id = "OrdersQry";
-                sqlDataSourceItem4.table = "Customer Orders Query";
-                sqlDataSourceItem4.title = "Orders (Full List)";
-                sqlDataSourceItem4.subtitle = "";
+                //var sqlDataSourceItem1 = new $.ig.RVAzureSqlDataSourceItem(sqlDataSource);
+                //sqlDataSourceItem1.id = "CustomerDemographics";
+                //sqlDataSourceItem1.title = "Customer Demographics";
+                //sqlDataSourceItem1.table = "CustomerDemographics";
+                //sqlDataSourceItem1.subtitle = "";
 
-                var athenaDS = new $.ig.RVAthenaDataSource();
-                athenaDS.id = "athenaDSId";
-                athenaDS.title = "AWS Athena Data";
-                athenaDS.subtitle = "Full Database";
-                athenaDS.region = "us-east-1";
-                athenaDS.database = "mydatabase";
+                //var sqlDataSourceItem2 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
+                //sqlDataSourceItem2.id = "Category1997";
+                //sqlDataSourceItem2.table = "Orders by Category";
+                //sqlDataSourceItem2.title = "1997 Category Data";
+                //sqlDataSourceItem2.subtitle = "";
+
+                //var sqlDataSourceItem3 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
+                //sqlDataSourceItem3.id = "Customers";
+                //sqlDataSourceItem3.table = "Customers";
+                //sqlDataSourceItem3.title = "Customers List";
+                //sqlDataSourceItem3.subtitle = "";
+
+                //var sqlDataSourceItem4 = new $.ig.RVSqlServerDataSourceItem(sqlDataSource);
+                //sqlDataSourceItem4.id = "OrdersQry";
+                //sqlDataSourceItem4.table = "Customer Orders Query";
+                //sqlDataSourceItem4.title = "Orders (Full List)";
+                //sqlDataSourceItem4.subtitle = "";
+
+                //var athenaDS = new $.ig.RVAthenaDataSource();
+                //athenaDS.id = "athenaDSId";
+                //athenaDS.title = "AWS Athena Data";
+                //athenaDS.subtitle = "Full Database";
+                //athenaDS.region = "us-east-1";
+                //athenaDS.database = "mydatabase";
 
 
                 var redshiftDS = new $.ig.RVRedshiftDataSource
@@ -72,16 +77,21 @@
 
 
 
-                var postgresDataSource = new $.ig.RVPostgresDataSource();
-                postgresDataSource.id="pgDs";
-                postgresDataSource.host = "localhost";
-                postgresDataSource.database = "Northwind Postgres";
-                postgresDataSource.title = "Northwind Postgres Data";
-                postgresDataSource.port="5432";
+                //var postgresDataSource = new $.ig.RVPostgresDataSource();
+                //postgresDataSource.id="pgDs";
+                //postgresDataSource.host = "localhost";
+                //postgresDataSource.database = "Northwind Postgres";
+                //postgresDataSource.title = "Northwind Postgres Data";
+                //postgresDataSource.port="5432";
 
-                callback(new $.ig.RevealDataSources([redshiftDS, postgresDataSource, athenaDS, sqlDataSource],
-                    [excelDsi, sqlDataSourceItem1, sqlDataSourceItem2, sqlDataSourceItem3, sqlDataSourceItem4], false));
-            };
+                //callback(new $.ig.RevealDataSources([redshiftDS, postgresDataSource, athenaDS, sqlDataSource],
+                //    [excelDsi, sqlDataSourceItem1, sqlDataSourceItem2, sqlDataSourceItem3, sqlDataSourceItem4], false));
+
+                callback(new $.ig.RevealDataSources([redshiftDS], [], false));
+
+                
+                
+                };
         }
     </script>
 }

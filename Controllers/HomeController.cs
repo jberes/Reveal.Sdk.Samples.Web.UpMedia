@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.Controllers
     {
         public IActionResult Index()
         {
-            return RedirectToAction("Sales");
+            return RedirectToAction("Alerts");
         }
 
         public IActionResult Campaigns()
@@ -40,6 +40,20 @@ namespace Reveal.Sdk.Samples.Web.UpMedia.Controllers
         public IActionResult CreateDashboard()
         {
             ViewData["Message"] = "CreateDashboard";
+
+            return View();
+        }
+
+        public IActionResult Alerts()
+        {
+            ViewData["Message"] = "Alerts";
+
+            return View();
+        }
+
+        public IActionResult CustomSortString()
+        {
+            ViewData["Message"] = "CustomSortString";
 
             return View();
         }

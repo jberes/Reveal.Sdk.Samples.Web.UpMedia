@@ -9,11 +9,11 @@
 
 
             customLoadDashboard(dashboardId, function (dashboard) {
-                var startDate = 'March 01, 2020 00:0:00';
-                var endDate = 'March 01, 2022 00:0:00';
-                $('#upmedia-loading').hide('slow', function () { $target.remove(); });
+                //var startDate = 'March 01, 2020 00:0:00';
+                //var endDate = 'March 01, 2022 00:0:00';
+                //$('#upmedia-loading').hide('slow', function () { $target.remove(); });
 
-                dashboard.dateFilter = new $.ig.RVDateDashboardFilter($.ig.RVDateFilterType.CustomRange, new $.ig.RVDateRange(new Date(startDate), new Date(endDate)));
+                //dashboard.dateFilter = new $.ig.RVDateDashboardFilter($.ig.RVDateFilterType.CustomRange, new $.ig.RVDateRange(new Date(startDate), new Date(endDate)));
 
                 var revealView = window.revealView = new $.ig.RevealView("#revealView");
                 revealView.interactiveFilteringEnabled = true;
@@ -22,7 +22,7 @@
                 revealView.onLinkedDashboardProviderAsync = onLinkedDashboardProviderAsyncHandler;
                 revealView.onDashboardSelectorRequested = onDashboardSelectorRequestedHandler;
 
-                revealView.showFilters = false;
+                //revealView.showFilters = false;
                 revealView.dashboard = dashboard;
             });
         }
@@ -82,7 +82,7 @@
         updateTerritoriesFilter();
     }
 </script>
-
+@*
 <div class="controls">
     <div class="container">
         <div id="fromDate" style="width:150px;"></div>
@@ -115,4 +115,4 @@
         <input type="checkbox" onchange="flipTerritories('Japan')" id="japanCheckbox" checked>
         <span class="checkmark"></span>
     </label>
-</div>
+</div>*@
